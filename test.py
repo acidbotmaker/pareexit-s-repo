@@ -9,7 +9,7 @@ class Robot:
     def charge(self):
         remain_battery = 10
         self.battery_level += remain_battery
-        print(f"{self.name} is now at {self.battery_level}% battery")
+        print(f"{self.name} is now at {self.battery_level}% battery some changes")
 
 
 my_robot = Robot("Sparky", 50)
