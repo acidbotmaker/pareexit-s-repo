@@ -1,19 +1,17 @@
-# run with debug
+# run with 'pipenv run python <filename>'
 
 import psycopg2
 from psycopg2 import sql
-import os
+from config import DB_POSTGRES
 
-db_config = {
-    "host": os.getenv("DB_HOST"),
-    "user": os.getenv("DB_USER"),
-    "password": os.getenv("DB_PASSWORD"),
-    "dbname": os.getenv("DB_NAME"),
-}
-target_db = os.getenv("TARGET_DB", "test")
+db_config = DB_POSTGRES
+target_db = "test"
 
 
 def run_setup() -> None:
+    conn = None
+    target_conn = None
+
     try:
         conn = psycopg2.connect(**db_config)
         conn.autocommit = True
@@ -30,7 +28,7 @@ def run_setup() -> None:
                 print(f"Database '{target_db}' already exists.")
 
             target_config = db_config.copy()
-            target_config["dbname"] = target_db
+            target_config["database"] = target_db
 
             conn = psycopg2.connect(**target_config)
             with conn.cursor() as cursor:
