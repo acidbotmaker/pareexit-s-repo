@@ -1,14 +1,9 @@
 # run with debugger
 
 import mysql.connector
-import os
+from config import DB_CONFIG
 
-db_config = {
-    "host": os.getenv("DB_HOST"),
-    "user": os.getenv("DB_USER"),
-    "password": os.getenv("DB_PASSWORD"),
-    "database": os.getenv("DB_NAME"),
-}
+db_config = DB_CONFIG
 
 if not all([db_config["host"], db_config["user"]]):
     raise ValueError("Database credentials not found!")
