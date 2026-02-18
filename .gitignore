@@ -220,6 +220,7 @@ my_company.db
 
 # Generated Assets
 downloaded_images/
+resized_images/
 
 # Log files
 *.log
